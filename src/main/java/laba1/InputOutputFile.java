@@ -10,9 +10,9 @@ public class InputOutputFile {
         File file = inputOutputFile.getFileFromResources(pathname);
         ArrayList<String> forecastsList = new ArrayList<>();
         try (FileReader reader = new FileReader(file);
-             BufferedReader br = new BufferedReader(reader)) {
+             BufferedReader bufferedReader = new BufferedReader(reader)) {
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 forecastsList.add(line);
             }
             return forecastsList;
