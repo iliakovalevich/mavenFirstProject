@@ -9,7 +9,7 @@ class Forecast {
     final static double HOROSCOPE_COST=3.0;
     final static double WEATHER_COST=2.0;
     final Random random=new Random();
-    final HashMap<Date, String> dateAndForecast = new HashMap<Date,String>();
+    final HashMap<Date, String> dateAndForecast = new HashMap<>();
     protected String randomForecast(ArrayList<String> forecastsHoroscopeList) {
         int firstForecast;
         int secondForecast;

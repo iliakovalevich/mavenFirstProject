@@ -3,16 +3,12 @@ package laba1;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class InputOutputFile {
     protected ArrayList<String> readTxtFile(String pathname) throws FileNotFoundException {
         InputOutputFile inputOutputFile = new InputOutputFile();
         File file = inputOutputFile.getFileFromResources(pathname);
-        ArrayList<String> forecastsList = new ArrayList<String>();
+        ArrayList<String> forecastsList = new ArrayList<>();
         try (FileReader reader = new FileReader(file);
              BufferedReader br = new BufferedReader(reader)) {
             String line;
