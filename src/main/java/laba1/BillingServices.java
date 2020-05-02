@@ -3,8 +3,8 @@ package laba1;
 import java.io.FileNotFoundException;
 
 public class BillingServices {
-    private final static String horoscopeFile="resources/horoscope.txt";
-    private final static String weatherFile="resources/horoscope.txt";
+    private final static String horoscopeFile="horoscope.txt";
+    private final static String weatherFile="weather.txt";
     private int horoscopeBilling=0;
     private int weatherBilling=0;
     final InputOutputConsole inputOutputConsole = new InputOutputConsole();

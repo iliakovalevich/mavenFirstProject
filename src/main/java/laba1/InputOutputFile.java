@@ -1,17 +1,37 @@
 package laba1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class InputOutputFile {
     protected ArrayList<String> readTxtFile(String pathname) throws FileNotFoundException {
-        Scanner content = new Scanner(new File(pathname));
-        ArrayList<String> forecastsList = new ArrayList<>();
-        while (content.hasNextLine()){
-            forecastsList.add(content.nextLine());
+        InputOutputFile inputOutputFile = new InputOutputFile();
+        File file = inputOutputFile.getFileFromResources(pathname);
+        ArrayList<String> forecastsList = new ArrayList<String>();
+        try (FileReader reader = new FileReader(file);
+             BufferedReader br = new BufferedReader(reader)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                forecastsList.add(line);
+            }
+            return forecastsList;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return forecastsList;
+    }
+    private File getFileFromResources(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource(fileName);
+        if (resource == null) {
+            throw new IllegalArgumentException("file is not found!");
+        } else {
+            return new File(resource.getFile());
+        }
     }
 }
