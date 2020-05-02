@@ -2,14 +2,9 @@ package laba1;
 
 import java.io.FileNotFoundException;
 
-public class BillingServices {
-    private final static String horoscopeFile="horoscope.txt";
-    private final static String weatherFile="weather.txt";
+public class BillingServices implements Billing {
     private int horoscopeBilling=0;
     private int weatherBilling=0;
-    final InputOutputConsole inputOutputConsole = new InputOutputConsole();
-    final InputOutputFile inputOutputFile = new InputOutputFile();
-    final Forecast forecast = new Forecast();
     public static void main(String[] args) {
         try{
             BillingServices billingServices=new BillingServices();
@@ -19,7 +14,7 @@ public class BillingServices {
             System.out.println(ex.getMessage());
         }
     }
-    private void menu() throws FileNotFoundException {
+    public void menu() throws FileNotFoundException {
         while(true){
             inputOutputConsole.printMenu();
             switch (inputOutputConsole.inputNumberOfMenu(0,2)){
@@ -37,18 +32,13 @@ public class BillingServices {
             }
         }
     }
-    private void caseHoroscope() throws FileNotFoundException {
+    public void caseHoroscope() throws FileNotFoundException {
         inputOutputConsole.inputDate("date of birthday ");
         inputOutputConsole.printPeriod();
-        switch (inputOutputConsole.inputNumberOfMenu(1,3)) {
-            case 1:
-            case 2:
-            case 3:
-                System.out.println(forecast.randomForecast(inputOutputFile.readTxtFile(horoscopeFile)));
-                break;
-        }
+        inputOutputConsole.inputNumberOfMenu(1,3);
+        System.out.println(forecast.randomForecast(inputOutputFile.readTxtFile(horoscopeFile)));
     }
-    private void caseWeather() throws FileNotFoundException {
+    public void caseWeather() throws FileNotFoundException {
         inputOutputConsole.printPeriod();
         switch (inputOutputConsole.inputNumberOfMenu(1,3)) {
             case 1:
