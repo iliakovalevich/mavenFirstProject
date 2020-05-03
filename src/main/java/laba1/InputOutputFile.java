@@ -3,12 +3,13 @@ package laba1;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InputOutputFile implements ReadFromFile {
-  public ArrayList<String> readTxtFile(String pathname) {
+  public List<String> readTxtFile(String pathname) {
     InputOutputFile inputOutputFile = new InputOutputFile();
     File file = inputOutputFile.getFileFromResources(pathname);
-    ArrayList<String> forecastsList = new ArrayList<>();
+    List<String> forecastsList = new ArrayList<>();
     try (FileReader reader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(reader)) {
       String line;

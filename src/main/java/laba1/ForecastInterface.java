@@ -8,11 +8,11 @@ public interface ForecastInterface {
   Random random = new Random();
   Map<Date, String> dateAndForecast = new HashMap<>();
 
-  String randomForecast(ArrayList<String> forecastsHoroscopeList);
+  String randomForecast(List<String> forecastsHoroscopeList);
 
-  String randomWeather(Date date, ArrayList<String> forecastsWeatherList);
+  String randomWeather(Date date, List<String> forecastsWeatherList);
 
-  String randomWeather(ArrayList<String> forecastsWeatherList);
+  String randomWeather(List<String> forecastsWeatherList);
 
   String payBilling(int horoscopeBilling, int weatherBilling);
 }

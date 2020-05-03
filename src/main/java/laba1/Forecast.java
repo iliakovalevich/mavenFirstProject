@@ -2,9 +2,10 @@ package laba1;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 class Forecast implements ForecastInterface {
-  public String randomForecast(ArrayList<String> forecastsHoroscopeList) {
+  public String randomForecast(List<String> forecastsHoroscopeList) {
     int firstForecast;
     int secondForecast;
     firstForecast = (random.nextInt(forecastsHoroscopeList.size()));
@@ -21,7 +22,7 @@ class Forecast implements ForecastInterface {
     }
   }
 
-  public String randomWeather(Date date, ArrayList<String> forecastsWeatherList) {
+  public String randomWeather(Date date, List<String> forecastsWeatherList) {
     if (!dateAndForecast.containsKey(date)) {
       dateAndForecast.put(
           date, forecastsWeatherList.get((random.nextInt(forecastsWeatherList.size()))));
@@ -29,7 +30,7 @@ class Forecast implements ForecastInterface {
     return dateAndForecast.get(date);
   }
 
-  public String randomWeather(ArrayList<String> forecastsWeatherList) {
+  public String randomWeather(List<String> forecastsWeatherList) {
     return forecastsWeatherList.get((random.nextInt(forecastsWeatherList.size())));
   }
 
