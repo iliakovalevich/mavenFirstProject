@@ -1,9 +1,10 @@
 package laba1;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ReadFromFile {
-    File getFileFromResources(String fileName);
-    ArrayList<String> readTxtFile(String pathname);
+  File getFileFromResources(String fileName);
+
+  List<String> readTxtFile(String pathname);
 }
