@@ -7,7 +7,6 @@ import java.util.List;
 
 public class InputOutputFile implements ReadFromFile {
   public List<String> readTxtFile(String pathname) {
-    InputOutputFile inputOutputFile = new InputOutputFile();
     File file = inputOutputFile.getFileFromResources(pathname);
     List<String> forecastsList = new ArrayList<>();
     try (FileReader reader = new FileReader(file);
