@@ -1,10 +1,13 @@
-package laba1;
+package com.laba1;
 
-import java.io.FileNotFoundException;
-
-public class BillingServices implements Billing {
+public class BillingServices {
   private int horoscopeBilling = 0;
   private int weatherBilling = 0;
+  static final String horoscopeFile = "horoscope.txt";
+  static final String weatherFile = "weather.txt";
+  InputOutputConsole inputOutputConsole = new InputOutputConsole();
+  InputOutputFile inputOutputFile = new InputOutputFile();
+  Forecast forecast = new Forecast();
 
   public static void main(String[] args) {
     try {
@@ -15,7 +18,7 @@ public class BillingServices implements Billing {
     }
   }
 
-  public void menu() throws FileNotFoundException {
+  public void menu() {
     while (true) {
       inputOutputConsole.printMenu();
       switch (inputOutputConsole.inputNumberOfMenu(0, 2)) {
@@ -30,6 +33,8 @@ public class BillingServices implements Billing {
         case 0:
           System.out.println(forecast.payBilling(horoscopeBilling, weatherBilling));
           return;
+        default:
+          System.out.println("");
       }
     }
   }

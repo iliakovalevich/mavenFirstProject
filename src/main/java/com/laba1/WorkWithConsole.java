@@ -1,4 +1,4 @@
-package laba1;
+package com.laba1;
 
 import java.util.Date;
 

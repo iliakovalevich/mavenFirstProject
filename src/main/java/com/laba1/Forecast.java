@@ -1,10 +1,14 @@
-package laba1;
+package com.laba1;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 class Forecast implements ForecastInterface {
+  double HOROSCOPE_COST = 3.0;
+  double WEATHER_COST = 2.0;
+  Random random = new Random();
+  Map<Date, String> dateAndForecast = new HashMap<>();
+
+  @Override
   public String randomForecast(List<String> forecastsHoroscopeList) {
     int firstForecast;
     int secondForecast;
@@ -22,6 +26,7 @@ class Forecast implements ForecastInterface {
     }
   }
 
+  @Override
   public String randomWeather(Date date, List<String> forecastsWeatherList) {
     if (!dateAndForecast.containsKey(date)) {
       dateAndForecast.put(
@@ -30,10 +35,12 @@ class Forecast implements ForecastInterface {
     return dateAndForecast.get(date);
   }
 
+  @Override
   public String randomWeather(List<String> forecastsWeatherList) {
     return forecastsWeatherList.get((random.nextInt(forecastsWeatherList.size())));
   }
 
+  @Override
   public String payBilling(int horoscopeBilling, int weatherBilling) {
     return ("horoscope 3.0$"
         + "\n"

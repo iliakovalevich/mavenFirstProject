@@ -1,4 +1,4 @@
-package laba1;
+package com.laba1;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,12 +7,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class InputOutputConsole implements WorkWithConsole {
+  @Override
   public void printMenu() {
     System.out.println("1-horoscope");
     System.out.println("2-weather forecast");
     System.out.println("0-exit");
   }
 
+  @Override
   public int inputNumberOfMenu(int minValue, int maxValue) {
     Scanner sc = new Scanner(System.in);
     int count;
@@ -31,6 +33,7 @@ public class InputOutputConsole implements WorkWithConsole {
     return count;
   }
 
+  @Override
   public void printPeriod() {
     LocalDate date = LocalDate.now(); // получаем текущую дату
     System.out.println("1-Forecast on the your day");
@@ -38,6 +41,7 @@ public class InputOutputConsole implements WorkWithConsole {
     System.out.println("3-Forecast on the " + date.getMonth() + " month ");
   }
 
+  @Override
   public Date inputDate(String s) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Enter the " + s + " dd-MM-yyyy");

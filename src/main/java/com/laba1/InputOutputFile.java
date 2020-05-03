@@ -1,12 +1,13 @@
-package laba1;
+package com.laba1;
 
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputOutputFile implements ReadFromFile {
+public class InputOutputFile implements ReadFromFileInterface {
   public List<String> readTxtFile(String pathname) {
+    InputOutputFile inputOutputFile = new InputOutputFile();
     File file = inputOutputFile.getFileFromResources(pathname);
     List<String> forecastsList = new ArrayList<>();
     try (FileReader reader = new FileReader(file);
