@@ -5,9 +5,9 @@ public class BillingServices {
   private int weatherBilling = 0;
   static final String horoscopeFile = "horoscope.txt";
   static final String weatherFile = "weather.txt";
-  InputOutputConsole inputOutputConsole = new InputOutputConsole();
-  InputOutputFile inputOutputFile = new InputOutputFile();
-  Forecast forecast = new Forecast();
+  final InputOutputConsole inputOutputConsole = new InputOutputConsole();
+  final InputOutputFile inputOutputFile = new InputOutputFile();
+  final Forecast forecast = new Forecast();
 
   public static void main(String[] args) {
     try {
@@ -34,7 +34,7 @@ public class BillingServices {
           System.out.println(forecast.payBilling(horoscopeBilling, weatherBilling));
           return;
         default:
-          System.out.println("");
+          System.out.println();
       }
     }
   }
@@ -59,6 +59,8 @@ public class BillingServices {
       case 3:
         System.out.println(forecast.randomWeather(inputOutputFile.readTxtFile(weatherFile)));
         break;
+      default:
+        System.out.println("The input number must be between from 0 to 3!");
     }
   }
 }

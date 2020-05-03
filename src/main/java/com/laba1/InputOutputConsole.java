@@ -24,7 +24,8 @@ public class InputOutputConsole implements WorkWithConsole {
         if (count >= minValue && count <= maxValue) {
           break;
         } else {
-          throw new Exception("The input number must be between from 0 to 3!");
+          throw new Exception(
+              "The input number must be between from" + minValue + "to" + maxValue + "!");
         }
       } catch (Exception ex) {
         System.out.println(ex.getMessage());

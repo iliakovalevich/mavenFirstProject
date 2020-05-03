@@ -3,10 +3,10 @@ package com.laba1;
 import java.util.*;
 
 class Forecast implements ForecastInterface {
-  double HOROSCOPE_COST = 3.0;
-  double WEATHER_COST = 2.0;
-  Random random = new Random();
-  Map<Date, String> dateAndForecast = new HashMap<>();
+  final double HOROSCOPE_COST = 3.0;
+  final double WEATHER_COST = 2.0;
+  final Random random = new Random();
+  final Map<Date, String> dateAndForecast = new HashMap<>();
 
   @Override
   public String randomForecast(List<String> forecastsHoroscopeList) {
