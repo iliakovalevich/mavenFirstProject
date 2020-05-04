@@ -10,6 +10,8 @@ public class BillingServices {
   static final String weatherFile = "weather.txt";
   static final String weatherFileJson = "weatherForecast.json";
   static final String horoscopeFileJson = "horoscopeForecast.json";
+  static final String horoscopeFileCsv = "csvHoroscope.csv";
+  static final String weatherFileCsv = "csvWeather.csv";
   final InputOutputConsole inputOutputConsole = new InputOutputConsole();
   final InputOutputFile inputOutputFile = new InputOutputFile();
   final Forecast forecast = new Forecast();
@@ -27,15 +29,18 @@ public class BillingServices {
 
   public void menu() {
     inputOutputConsole.printOutputFile();
-    switch (inputOutputConsole.inputNumberOfMenu(0, 2)) {
+    switch (inputOutputConsole.inputNumberOfMenu(0, 3)) {
       case 1:
         caseTxt();
         break;
       case 2:
         caseJson();
         break;
+      case 3:
+        caseCsv();
+        break;
       default:
-        System.out.println("Number is not 0-2");
+        System.out.println("Number is not 0-3");
     }
     while (true) {
       inputOutputConsole.printMenu();
@@ -60,6 +65,11 @@ public class BillingServices {
   public void caseTxt() {
     horoscopeList = inputOutputFile.readTxtFile(horoscopeFile);
     weatherList = inputOutputFile.readTxtFile(weatherFile);
+  }
+
+  public void caseCsv() {
+    horoscopeList = inputOutputFile.readTxtFile(horoscopeFileCsv);
+    weatherList = inputOutputFile.readTxtFile(weatherFileCsv);
   }
 
   public void caseJson() {

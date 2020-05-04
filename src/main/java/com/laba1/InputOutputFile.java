@@ -40,8 +40,7 @@ public class InputOutputFile implements ReadFromFileInterface {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    JSONObject weatherJsonObject =
-            null;
+    JSONObject weatherJsonObject = null;
     try {
       weatherJsonObject = (JSONObject) JSONValue.parseWithException(stringBuilder.toString());
     } catch (ParseException e) {
