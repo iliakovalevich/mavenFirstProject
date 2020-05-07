@@ -6,14 +6,7 @@ import java.util.List;
 public class BillingServices {
   private int horoscopeBilling = 0;
   private int weatherBilling = 0;
-  static final String horoscopeFile = "horoscope.txt";
-  static final String weatherFile = "weather.txt";
-  static final String weatherFileJson = "weatherForecast.json";
-  static final String horoscopeFileJson = "horoscopeForecast.json";
-  static final String horoscopeFileCsv = "csvHoroscope.csv";
-  static final String weatherFileCsv = "csvWeather.csv";
   final InputOutputConsole inputOutputConsole = new InputOutputConsole();
-  final InputOutputFile inputOutputFile = new InputOutputFile();
   final Forecast forecast = new Forecast();
   List<String> horoscopeList = new ArrayList<>();
   List<String> weatherList = new ArrayList<>();
@@ -29,19 +22,7 @@ public class BillingServices {
 
   public void menu() {
     inputOutputConsole.printOutputFile();
-    switch (inputOutputConsole.inputNumberOfMenu(0, 3)) {
-      case 1:
-        caseTxt();
-        break;
-      case 2:
-        caseJson();
-        break;
-      case 3:
-        caseCsv();
-        break;
-      default:
-        System.out.println("Number is not 0-3");
-    }
+    switchDataFromResources();
     while (true) {
       inputOutputConsole.printMenu();
       switch (inputOutputConsole.inputNumberOfMenu(0, 2)) {
@@ -62,19 +43,43 @@ public class BillingServices {
     }
   }
 
+  private void switchDataFromResources() {
+    switch (inputOutputConsole.inputNumberOfMenu(0, 4)) {
+      case 1:
+        caseTxt();
+        break;
+      case 2:
+        caseJson();
+        break;
+      case 3:
+        caseCsv();
+        break;
+      case 4:
+        caseDataBase();
+        break;
+      default:
+        System.out.println("Number is not 0-3");
+    }
+  }
+
+  public void caseDataBase() {
+    horoscopeList = new ReadFromDataBase().readHoroscopeForecasts();
+    weatherList = new ReadFromDataBase().readWeatherForecasts();
+  }
+
   public void caseTxt() {
-    horoscopeList = inputOutputFile.readTxtFile(horoscopeFile);
-    weatherList = inputOutputFile.readTxtFile(weatherFile);
+    horoscopeList = new ReadTxtFile().readHoroscopeForecasts();
+    weatherList = new ReadTxtFile().readWeatherForecasts();
   }
 
   public void caseCsv() {
-    horoscopeList = inputOutputFile.readTxtFile(horoscopeFileCsv);
-    weatherList = inputOutputFile.readTxtFile(weatherFileCsv);
+    horoscopeList = new ReadCsvFile().readHoroscopeForecasts();
+    weatherList = new ReadCsvFile().readWeatherForecasts();
   }
 
   public void caseJson() {
-    horoscopeList = inputOutputFile.readJsonFile(horoscopeFileJson, "horoscope");
-    weatherList = inputOutputFile.readJsonFile(weatherFileJson, "weather");
+    horoscopeList = new ReadJsonFile().readHoroscopeForecasts();
+    weatherList = new ReadJsonFile().readWeatherForecasts();
   }
 
   public void caseHoroscope() {

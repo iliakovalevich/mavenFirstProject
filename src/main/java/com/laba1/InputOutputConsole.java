@@ -38,6 +38,7 @@ public class InputOutputConsole implements WorkWithConsole {
     System.out.println("1-Read from Txt");
     System.out.println("2-Read from Json");
     System.out.println("3-Read from CSV");
+    System.out.println("4-Read from Data Base");
     System.out.println("0-exit");
   }
 
