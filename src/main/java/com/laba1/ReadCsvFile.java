@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadCsvFile implements Read {
-  static final String horoscopeFileCsv = "csvHoroscope.csv";
-  static final String weatherFileCsv = "csvWeather.csv";
+  private static final String HOROSCOPE_FILE_CSV = "csvHoroscope.csv";
+  private static final String WEATHER_FILE_CSV = "csvWeather.csv";
 
   @Override
   public List<String> readHoroscopeForecasts() {
     List<String> horoscopeForecastsList = new ArrayList<>();
-    try (FileReader reader = new FileReader(getFileFromResources(horoscopeFileCsv));
+    try (FileReader reader = new FileReader(getFileFromResources(HOROSCOPE_FILE_CSV));
         BufferedReader bufferedReader = new BufferedReader(reader)) {
       String line;
       while ((line = bufferedReader.readLine()) != null) {
@@ -30,7 +30,7 @@ public class ReadCsvFile implements Read {
   @Override
   public List<String> readWeatherForecasts() {
     List<String> weatherForecastsList = new ArrayList<>();
-    try (FileReader reader = new FileReader(getFileFromResources(weatherFileCsv));
+    try (FileReader reader = new FileReader(getFileFromResources(WEATHER_FILE_CSV));
         BufferedReader bufferedReader = new BufferedReader(reader)) {
       String line;
       while ((line = bufferedReader.readLine()) != null) {
@@ -42,7 +42,7 @@ public class ReadCsvFile implements Read {
     return weatherForecastsList;
   }
 
-  private static File getFileFromResources(String fileName) {
+  public File getFileFromResources(String fileName) {
     ClassLoader classLoader = ReadTxtFile.class.getClassLoader();
     URL resource = classLoader.getResource(fileName);
     if (resource == null) {

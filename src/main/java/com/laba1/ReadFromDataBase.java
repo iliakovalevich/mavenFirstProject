@@ -11,21 +11,19 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class ReadFromDataBase implements Read {
-  static final String propertiesDataBase = "database.properties.txt";
+  private static final String PROPERTIES_DATA_BASE = "database.properties.txt";
 
   public List<String> readHoroscopeForecasts() {
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-      List<String> forecastsList = new ArrayList<>();
-      try (Connection conn = getConnection()) {
-        Statement statement = Objects.requireNonNull(conn).createStatement();
-        ResultSet resultSet =
-            statement.executeQuery("SELECT DISTINCT Forecasts FROM HoroscopeForecast");
-        while (resultSet.next()) {
-          forecastsList.add(resultSet.getString("Forecasts"));
-        }
-        return forecastsList;
+    List<String> forecastsList = new ArrayList<>();
+    try (Connection conn = getConnection()) {
+      Statement statement = Objects.requireNonNull(conn).createStatement();
+      ResultSet resultSet =
+          statement.executeQuery("SELECT DISTINCT Forecasts FROM HoroscopeForecast");
+      while (resultSet.next()) {
+        forecastsList.add(resultSet.getString("Forecasts"));
       }
+      return forecastsList;
+
     } catch (Exception ex) {
       System.out.println(ex);
     }
@@ -33,26 +31,28 @@ public class ReadFromDataBase implements Read {
   }
 
   public List<String> readWeatherForecasts() {
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-      List<String> forecastsList = new ArrayList<>();
-      try (Connection conn = getConnection()) {
-        Statement statement = Objects.requireNonNull(conn).createStatement();
-        ResultSet resultSet =
-            statement.executeQuery("SELECT DISTINCT Forecasts FROM WeatherForecast");
-        while (resultSet.next()) {
-          forecastsList.add(resultSet.getString("Forecasts"));
-        }
-        return forecastsList;
+    List<String> forecastsList = new ArrayList<>();
+    try (Connection conn = getConnection()) {
+      Statement statement = Objects.requireNonNull(conn).createStatement();
+      ResultSet resultSet =
+          statement.executeQuery("SELECT DISTINCT Forecasts FROM WeatherForecast");
+      while (resultSet.next()) {
+        forecastsList.add(resultSet.getString("Forecasts"));
       }
+      return forecastsList;
     } catch (Exception ex) {
       System.out.println(ex);
     }
     return null;
   }
 
-  private static Connection getConnection() {
-    File file = getFileFromResources(propertiesDataBase);
+  private Connection getConnection() {
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+    } catch (Exception ex) {
+      System.out.println(ex);
+    }
+    File file = getFileFromResources(PROPERTIES_DATA_BASE);
     Properties properties = new Properties();
     try {
       properties.load(new FileReader(file));
@@ -70,7 +70,7 @@ public class ReadFromDataBase implements Read {
     return null;
   }
 
-  private static File getFileFromResources(String fileName) {
+  public File getFileFromResources(String fileName) {
     ClassLoader classLoader = ReadFromDataBase.class.getClassLoader();
     URL resource = classLoader.getResource(fileName);
     if (resource == null) {

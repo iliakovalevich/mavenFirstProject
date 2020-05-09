@@ -57,8 +57,10 @@ public class BillingServices {
       case 4:
         caseDataBase();
         break;
+      case 0:
+        System.exit(0);
       default:
-        System.out.println("Number is not 0-3");
+        System.out.println("Number is not 0-4");
     }
   }
 
