@@ -12,13 +12,15 @@ import java.util.Properties;
 
 public class ReadFromDataBase implements Read {
   private static final String PROPERTIES_DATA_BASE = "database.properties.txt";
+  private static final String SQL_SELECT_HoroscopeForecast = "SELECT DISTINCT Forecasts FROM HoroscopeForecast";
+  private static final String SQL_SELECT_FORECAST = "SELECT DISTINCT Forecasts FROM WeatherForecast";
 
   public List<String> readHoroscopeForecasts() {
     List<String> forecastsList = new ArrayList<>();
     try (Connection conn = getConnection()) {
       Statement statement = Objects.requireNonNull(conn).createStatement();
       ResultSet resultSet =
-          statement.executeQuery("SELECT DISTINCT Forecasts FROM HoroscopeForecast");
+          statement.executeQuery(SQL_SELECT_HoroscopeForecast);
       while (resultSet.next()) {
         forecastsList.add(resultSet.getString("Forecasts"));
       }
@@ -35,7 +37,7 @@ public class ReadFromDataBase implements Read {
     try (Connection conn = getConnection()) {
       Statement statement = Objects.requireNonNull(conn).createStatement();
       ResultSet resultSet =
-          statement.executeQuery("SELECT DISTINCT Forecasts FROM WeatherForecast");
+          statement.executeQuery(SQL_SELECT_FORECAST);
       while (resultSet.next()) {
         forecastsList.add(resultSet.getString("Forecasts"));
       }
