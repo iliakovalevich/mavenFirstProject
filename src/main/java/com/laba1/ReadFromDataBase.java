@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ReadFromDataBase implements Read {
   private static final String PROPERTIES_DATA_BASE = "database.properties.txt";
   private static final String SQL_SELECT_HoroscopeForecast = "SELECT DISTINCT Forecasts FROM HoroscopeForecast";
-  private static final String SQL_SELECT_FORECAST = "SELECT DISTINCT Forecasts FROM WeatherForecast";
+  private static final String SQL_SELECT_FORECAST  = "SELECT DISTINCT Forecasts FROM WeatherForecast";
 
   public List<String> readHoroscopeForecasts() {
     List<String> forecastsList = new ArrayList<>();
